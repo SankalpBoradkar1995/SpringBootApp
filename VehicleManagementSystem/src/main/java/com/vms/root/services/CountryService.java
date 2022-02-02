@@ -1,0 +1,47 @@
+package com.vms.root.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.vms.root.models.Country;
+import com.vms.root.repositories.CountryRepository;
+
+@Service
+public class CountryService 
+{
+	// Initiliazing CountryRepository to talk to DB
+	
+	@Autowired
+	private CountryRepository countryRepo;
+	
+	//Returns list of countries from DB
+	public List<Country> getCountries()
+	{
+		return countryRepo.findAll();
+	}
+	
+	//Add new country
+	
+	public void saveCountry(Country country)
+	{
+		countryRepo.save(country);
+	}
+	
+	//Get country by ID, added optional to avoid exception in case no country is present with provided id
+	
+	public Optional<Country> getCountryById(int id)
+	{
+		
+		return countryRepo.findById(id);
+	}
+	
+	//Delete country by ID
+	
+	public void delete(Integer id)
+	{
+		countryRepo.deleteById(id);
+	}
+}
