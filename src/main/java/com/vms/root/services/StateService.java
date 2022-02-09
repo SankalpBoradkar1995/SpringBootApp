@@ -35,7 +35,7 @@ public class StateService
 	}
 	
 	//Delete by ID
-	public void deleteState(int id)
+	public void deleteState(Integer id)
 	{
 		stateRepo.deleteById(id);
 	}
