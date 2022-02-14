@@ -115,7 +115,7 @@ public class CountryController
 		
 		//System.out.println(countryService.findBycapital(capital));
 		 
-		 return "country";
+		 return "vehicle";
 	}
 	
 	
