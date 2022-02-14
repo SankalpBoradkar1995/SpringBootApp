@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.vms.root.models.Country;
+import com.vms.root.repositories.CountryRepositoryByName;
 import com.vms.root.services.CountryService;
 
 
@@ -89,10 +93,30 @@ public class CountryController
 	}
 	
 	@RequestMapping(value="/country/delete",method= {RequestMethod.DELETE,RequestMethod.GET})
+	
 	public String deleteByID(Integer id)
 	{
 		countryService.delete(id);
 		
 		return "redirect:/country";
 	}
+	
+	
+	@RequestMapping(value="/country/description/{capital}", method=RequestMethod.GET)
+	public String findByName(@RequestParam String capital, Model map)
+	{
+		System.out.println("Input from UI:"+" "+capital);
+		System.out.println("Inside by name controller");
+		//ModelAndView model = new ModelAndView();
+		List<Country> countryList = countryService.getCountries();
+		
+		map.addAttribute("countries", countryList);
+		map.addAttribute("capitalData", countryService.findBycapital(capital));
+		
+		//System.out.println(countryService.findBycapital(capital));
+		 
+		 return "country";
+	}
+	
+	
 }

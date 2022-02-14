@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.vms.root.models.Country;
 import com.vms.root.repositories.CountryRepository;
+import com.vms.root.repositories.CountryRepositoryByName;
 
 @Service
 public class CountryService 
@@ -16,6 +17,22 @@ public class CountryService
 	
 	@Autowired
 	private CountryRepository countryRepo;
+	@Autowired
+	CountryRepositoryByName countryByName;
+	
+	
+	public List<Country> findBycapital(String capital)
+	{
+		System.out.println("Inside by service by name controller");
+		List<Country> list =countryByName.findBycapital(capital);
+		for(Object xyx: list)
+		{
+			System.out.println(xyx);
+		}
+		
+		return countryByName.findBycapital(capital);
+		
+	}
 	
 	//Returns list of countries from DB
 	public List<Country> getCountries()
@@ -44,4 +61,5 @@ public class CountryService
 	{
 		countryRepo.deleteById(id);
 	}
+	
 }

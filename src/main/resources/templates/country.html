@@ -557,7 +557,43 @@
             <div class="card-body">
               <h5 class="card-title">Example Card</h5>
               
-              
+              <form th:action="@{/country/description/{capital}}" method="get" class="d-flex" id="formID">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital">
+       <!-- <a th:href="@{/country/description/(capital=${inputVal})}" class="btn btn-outline-success" type="submit" onclick="getInputValue();" id="searchButton">Search</a>-->
+       <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button>
+       <!-- onclick="getInputValue();" -->
+       
+     <!--   <script>
+        function getInputValue(){
+            // Selecting the input element and get its value 
+            var inputVal = document.getElementById("capital").value;
+            // Displaying the value
+           // alert(inputVal);
+            document.getElementById("formID").submit();
+        }
+        
+    </script> -->
+    <p></p>
+   
+      </form>
+    <table class="table table-hover" id="byCapital">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Code</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="cap:${capitalData}">
+                    <td th:text="${cap.id}"></td>
+                    <td th:text="${cap.description}"></td>
+                    <td th:text="${cap.capital}"></td>
+                    <td th:text=${cap.code}></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           
@@ -766,6 +802,8 @@
 
 
   <!-- Vendor JS Files -->
+  
+  
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.min.js"></script>
@@ -778,6 +816,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
    <script src="assets/js/country.js"></script>
+   
    
    </script>
 </body>
