@@ -11,6 +11,8 @@ $('document').ready(function() {
 			$('#idEdit').val(state.id);
 			$('#ddlCountryEdit').val(state.countryid);
 			$('#nameEdit').val(state.name);
+			$('#capitalEdit').val(state.capital);
+			$('#codeEdit').val(state.code);
 			$('#detailsEdit').val(state.details);
 		});			
 		$('#editModel').modal('show');		
