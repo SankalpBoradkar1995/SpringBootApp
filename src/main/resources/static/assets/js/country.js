@@ -46,7 +46,7 @@ $('document').ready(function() {
 		$.ajax({
 			type:"GET",
 			url:"conuntry/description/{capital}"
-			data:{"capital":input},
+			data:input,
 		       success: function(data){
 		alert(data);}
 		})
