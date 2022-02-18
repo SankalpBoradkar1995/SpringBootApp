@@ -45,7 +45,7 @@ $('document').ready(function() {
 		alert(input);
 		$.ajax({
 			type:"GET",
-			url:"country/description/"+input,
+			url:"/country/description/"+input,
 			
 		       success: function(controllerData){
 		alert(controllerData);}
