@@ -43,6 +43,13 @@ $('document').ready(function() {
 		//document.getElementById("formID").submit();
 		var input=$('#capital').val();
 		alert(input);
+		$.ajax({
+			type:="GET",
+			url="conuntry/description/{capital}"
+			data:{capital:input},
+		       success: function(data){
+		alert(data);}
+		})
 		//alert(document.getElementById("byCapital").value);
            // var op = document.getElementById("byCapital").value;
           //  alert(op);
