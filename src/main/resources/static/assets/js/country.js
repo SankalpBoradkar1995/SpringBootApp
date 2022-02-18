@@ -39,8 +39,10 @@ $('document').ready(function() {
 		//var inputVal = document.getElementById("capital").value;
 		// Displaying the value
 		// alert(inputVal);
-		var inputVal = document.getElementById("capital").value;
-		document.getElementById("formID").submit();
+		//var inputVal = document.getElementById("capital").value;
+		//document.getElementById("formID").submit();
+		var input=$('#capital').val();
+		alert(input);
 		//alert(document.getElementById("byCapital").value);
            // var op = document.getElementById("byCapital").value;
           //  alert(op);
