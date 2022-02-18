@@ -45,10 +45,10 @@ $('document').ready(function() {
 		alert(input);
 		$.ajax({
 			type:"GET",
-			url:"conuntry/description/{capital}"
-			data:input,
-		       success: function(data){
-		alert(data);}
+			url:"conuntry/description/{capital}",
+			
+		       success: function(input){
+		alert(input);}
 		})
 		//alert(document.getElementById("byCapital").value);
            // var op = document.getElementById("byCapital").value;
