@@ -103,7 +103,7 @@ public class CountryController
 	
 	
 	@RequestMapping(value="/country/description/{capital}", method=RequestMethod.GET)
-	public String findByName(@RequestParam String capital, Model map)
+	public Model findByName(@RequestParam String capital, Model map)
 	{
 		System.out.println("Input from UI:"+" "+capital);
 		System.out.println("Inside by name controller");
@@ -115,7 +115,7 @@ public class CountryController
 		
 		//System.out.println(countryService.findBycapital(capital));
 		 
-		 return "country";
+		 return map;
 	}
 	
 	
