@@ -576,10 +576,11 @@
             <div class="card-body">
               <h5 class="card-title">Example Card</h5>
               
-              <form th:action="@{/country/description/{capital}}" method="get" class="d-flex" id="formID">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital">
+            <!--  <form th:action="@{/country/description/{capital}}" method="get" class="d-flex" id="formID">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital"> -->
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital">
        <!-- <a th:href="@{/country/description/(capital=${inputVal})}" class="btn btn-outline-success" type="submit" onclick="getInputValue();" id="searchButton">Search</a>-->
-       <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button>
+       <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button> 
        <!-- onclick="getInputValue();" -->
        
      <!--   <script>
@@ -594,7 +595,7 @@
     </script> -->
     <p></p>
    
-      </form>
+     <!-- </form> -->
     <table class="table table-hover" id="byCapital">
                 <thead>
                   <tr>
