@@ -44,8 +44,8 @@ $('document').ready(function() {
 		var input=$('#capital').val();
 		alert(input);
 		$.ajax({
-			type:="GET",
-			url="conuntry/description/{capital}"
+			type:"GET",
+			url:"conuntry/description/{capital}"
 			data:{capital:input},
 		       success: function(data){
 		alert(data);}
