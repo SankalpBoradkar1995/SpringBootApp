@@ -47,8 +47,8 @@ $('document').ready(function() {
 			type:"GET",
 			url:"country/description/"+input,
 			
-		       success: function(input){
-		alert(input);}
+		       success: function(controllerData){
+		alert(controllerData);}
 		})
 		//alert(document.getElementById("byCapital").value);
            // var op = document.getElementById("byCapital").value;
