@@ -45,7 +45,7 @@ $('document').ready(function() {
 		alert(input);
 		$.ajax({
 			type:"GET",
-			url:"conuntry/description/?capital=Tokyo",
+			url:"conuntry/description/"+input,
 			
 		       success: function(input){
 		alert(input);}
