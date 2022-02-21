@@ -52,6 +52,39 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column  {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column  {
+    width: 100%;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -507,33 +540,20 @@
     </div><!-- End Page Title -->
     <h1>List of Countries</h1>
     
-    <table class="table table-hover" id="byCapital">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Capital</th>
-                    <th scope="col">Code</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="cap:${capitalData}">
-                    <td th:text="${cap.id}"></td>
-                    <td th:text="${cap.description}"></td>
-                    <td th:text="${cap.capital}"></td>
-                    <td th:text=${cap.code}></td>
-                  </tr>
-                </tbody>
-              </table>
-
     <section class="section">
       <div class="row">
         <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"></h5>
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@mdo">New Country</button>
+            <div class="row">
+            <div class="column">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@mdo">New Country</button>
+            </div>
+            </div>
+              <h5 class="card-title">Availabel Records</h5>
+              
+             
                
               <table class="table table-hover">
                 <thead>
@@ -542,6 +562,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Capital</th>
                     <th scope="col">Code</th>
+                    <th scope="col">Nationality</th>
+                    <th scope="col">Continent</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
@@ -551,6 +573,8 @@
                     <td th:text="${country.description}"></td>
                     <td th:text="${country.capital}"></td>
                     <td th:text=${country.code}></td>
+                    <td th:text=${country.nationality}></td>
+                    <td th:text=${country.continent}></td>
                     <td>
                    <!-- <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" data-bs-whatever="@mdo">Edit</button> -->
                    <div class="btn-group">
@@ -574,46 +598,46 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
+              <h5 class="card-title">Filtered Records</h5>
               
             <!--  <form th:action="@{/country/description/{capital}}" method="get" class="d-flex" id="formID">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital"> -->
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital">
+            <!-- uncomment this if new soln fails:  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital"> -->
        <!-- <a th:href="@{/country/description/(capital=${inputVal})}" class="btn btn-outline-success" type="submit" onclick="getInputValue();" id="searchButton">Search</a>-->
-       <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button> 
+      <!--uncomment this if new soln fails: <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button> -->
        <!-- onclick="getInputValue();" -->
        
-     <!--   <script>
-        function getInputValue(){
-            // Selecting the input element and get its value 
-            var inputVal = document.getElementById("capital").value;
-            // Displaying the value
-           // alert(inputVal);
-            document.getElementById("formID").submit();
-        }
-        
-    </script> -->
-    <p></p>
-   
      <!-- </form> -->
-    <table class="table table-hover" id="byCapital">
+     
+     <form th:action="@{/country}" class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search by fields" aria-label="Search" name="keyword">
+        <input class="btn btn-outline-success" type="submit"></input>
+      </form>
+     <div>
+     <table class="table table-hover" id="byCapital">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Description</th>
                     <th scope="col">Capital</th>
                     <th scope="col">Code</th>
+                    <th scope="col">Nationality</th>
+                    <th scope="col">Continent</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="cap:${capitalData}">
+                  <tr th:each="cap:${filteredCountry}">
                     <td th:text="${cap.id}"></td>
                     <td th:text="${cap.description}"></td>
                     <td th:text="${cap.capital}"></td>
                     <td th:text=${cap.code}></td>
+                    <td th:text=${cap.nationality}></td>
+                    <td th:text=${cap.continent}></td>
                   </tr>
                 </tbody>
               </table> 
+     </div>
+    
             </div>
           </div>
           

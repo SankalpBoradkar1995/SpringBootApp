@@ -21,15 +21,14 @@ public class CountryService
 	CountryRepositoryByName countryByName;
 	
 	
+	public List<Country> findByKeyword(String keyword)
+	{
+		return countryRepo.getBykeyword(keyword);
+	}
+	
 	public List<Country> findBycapital(String capital)
 	{
 		System.out.println("Inside by service by name controller");
-		List<Country> list =countryByName.findBycapital(capital);
-		for(Object xyx: list)
-		{
-			System.out.println(xyx);
-		}
-		
 		return countryByName.findBycapital(capital);
 		
 	}

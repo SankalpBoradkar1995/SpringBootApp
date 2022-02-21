@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.vms.root.models.Country;
-import com.vms.root.repositories.CountryRepositoryByName;
 import com.vms.root.services.CountryService;
 
 
@@ -28,14 +28,39 @@ public class CountryController
 	
 	
 	@GetMapping("/country")
-	public String getCountries(Model model) //-->Adding parameter to method to send list & html page in return
+	public String getCountries(Model model, String keyword) //-->Adding parameter to method to send list & html page in return
 	{
-		List<Country> countryList = countryService.getCountries();
+		List<Country> countryList = null;
+		List<Country> filteredCountry = null;
+		if(keyword==null)
+		{
+			countryList = countryService.getCountries();
+			model.addAttribute("countries", countryList);
+		}
+		else
+		{
+			filteredCountry=countryService.findByKeyword(keyword);
+			//model.addAttribute("countries", countryService.getCountries());
+			model.addAttribute("filteredCountry", filteredCountry);
+			model.addAttribute("countries", countryService.getCountries());
+		}
 		
-		model.addAttribute("countries", countryList); //-->Adding list to model with attribute name as countries
-													 //-->Using "countries" can iterate list of countries on HTML page	
+		 
+		 //-->Adding list to model with attribute name as countries
 		return "country";
 	}
+	
+	/*@GetMapping("/country")
+	public String countryFilter(Model model, String keyword)
+	{
+		List<Country> filteredCountry = null;
+		if(keyword!=null)
+		{
+			filteredCountry=countryService.findByKeyword(keyword);
+		}
+		model.addAttribute("filteredCountry", filteredCountry);
+		return "country";
+	}*/
 	
 	@PostMapping("/country/addNew")
 	public String addNew(Country country)
@@ -101,22 +126,25 @@ public class CountryController
 		return "redirect:/country";
 	}
 	
+//	
 	
-	@RequestMapping(value="/country/description/{capital}", method=RequestMethod.GET)
-	public Model findByName(@RequestParam String capital, Model map)
+	@GetMapping("/country/description/{capital}")
+	public ResponseEntity<Object> findByName(@PathVariable (value="capital") String capital, Model map)
 	{
 		System.out.println("Input from UI:"+" "+capital);
 		System.out.println("Inside by name controller");
-		//ModelAndView model = new ModelAndView();
-		List<Country> countryList = countryService.getCountries();
+		ModelAndView model = new ModelAndView();
+		//List<Country> countryList = countryService.getCountries();
+		List<Country> countryByCapital = countryService.findBycapital(capital);
 		
-		map.addAttribute("countries", countryList);
-		map.addAttribute("capitalData", countryService.findBycapital(capital));
+		//map.addAttribute("countries", countryList);
+		map.addAttribute("capitalData", countryByCapital);
 		
+		System.out.println("Returning details...");
 		//System.out.println(countryService.findBycapital(capital));
-		 
-		 return map;
+		return new ResponseEntity<Object>(map, HttpStatus.OK);
+		
+		//
 	}
-	
-	
+		
 }
