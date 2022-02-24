@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,6 +45,17 @@ public class AssetController
 		return "asset";
 	}
 	
+	//get all with sort
+	/*@GetMapping("/asset/{field}")
+	public String getAllWithSort(Model model, @PathVariable(value="field") String field)
+	{
+		List<Assets> assetList;
+			assetList = assetService.allAssetsByOrder(field);
+			model.addAttribute("allAssets", assetList);
+		
+		return "/asset";
+	}*/
+	
 	@PostMapping("/asset/addNew")
 	public String addNew(Assets asset)
 	{
@@ -58,7 +70,7 @@ public class AssetController
 		return assetService.getById(id);
 	}
 	
-	@RequestMapping(value="/asset/update", method= {RequestMethod.DELETE, RequestMethod.GET})
+	@RequestMapping(value="/asset/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String deleteAsset(Integer id)
 	{
 		assetService.deleteById(id);
