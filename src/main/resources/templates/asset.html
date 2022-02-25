@@ -30,6 +30,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap 5 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+	
 
 	<!-- Bootstrap icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
@@ -385,9 +386,12 @@
 							<h5 class="card-title">Available Assets</h5>
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
 								data-bs-target="#addModal" data-bs-whatever="@mdo">New Asset</button>
-							<table class="table table-hover">
-								<thead>
-									<tr>
+								<!-- table table-hover: is table style class
+								     datatable: is seprate class to add sorting and limiting records to table
+								 -->
+							<table class=" table table-success  table-striped table-hover datatable">
+								<thead >
+									<tr class="table-light">
 										<th scope="col">#</th>
 										<th scope="col">Member</th>
 										<th scope="col">Type</th>
@@ -448,9 +452,9 @@
 								<input class="btn btn-outline-success" type="submit"></input>
 							</form>
 							<div>
-							<table class="table table-hover">
+							<table class="table table-success  table-striped table-hover datatable" id="example">
 								<thead>
-									<tr>
+									<tr class="table-light">
 										<th scope="col">#</th>
 										<th scope="col">Member</th>
 										<th scope="col">Type</th>
