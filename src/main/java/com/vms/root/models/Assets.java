@@ -31,6 +31,5 @@ public class Assets
 	private String licencedetails;
 	private String expirydate;
 	private String softwarepurpose;
-	
-
+	private Integer asgdate;
 }
