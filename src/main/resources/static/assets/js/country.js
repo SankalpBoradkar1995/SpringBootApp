@@ -35,6 +35,7 @@ $('document').ready(function() {
 		$('#deleteModel').model('show');
 	});
 
+	
 	$('#searchButton').on('click', function(event) {
 		//var inputVal = document.getElementById("capital").value;
 		// Displaying the value
@@ -42,18 +43,20 @@ $('document').ready(function() {
 		//var inputVal = document.getElementById("capital").value;
 		//document.getElementById("formID").submit();
 		var input=$('#capital').val();
-		alert(input);
+		//alert(input);
 		$.ajax({
 			type:"GET",
 			url:"/country/description/"+input,
 			
 		       success: function(controllerData){
-		alert(controllerData);}
-		})
+			alert(controllerData);
+		}
+		});
 		//alert(document.getElementById("byCapital").value);
            // var op = document.getElementById("byCapital").value;
           //  alert(op);
 
 	});
 });
+
 

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-	<title>PD III - Test Team's Resources</title>
+	<title>IT[s]</title>
 	<meta content="" name="description">
 	<meta content="" name="keywords">
 
@@ -38,7 +38,7 @@
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<script src="assets/js/country.js"></script>
+	
 
 	<!-- Template Main CSS File -->
 	<link href="assets/css/style.css" rel="stylesheet">
@@ -59,7 +59,7 @@
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="index.html" class="logo d-flex align-items-center">
 				<img src="assets/img/logo.png" alt="">
-				<span class="d-none d-lg-block">NiceAdmin</span>
+				<span class="d-none d-lg-block">IT[s]</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
 		</div><!-- End Logo -->
@@ -305,14 +305,28 @@
 							<i class="bi bi-circle"></i><span>Assets</span>
 						</a>
 					</li>
-					<li>
+
+				</ul>
+			</li><!-- End Assets Nav -->
+			
+			<li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
             <a th:href="@{/assetreport}">
               <i class="bi bi-circle"></i><span>Asset Report</span>
             </a>
           </li>
-
-				</ul>
-			</li><!-- End Resources Nav -->
+          <li>
+            <a href="@{/defectreport}">
+              <i class="bi bi-circle"></i><span>Defect Reports</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li><!-- End Forms Nav -->
 
 			<li class="nav-heading">Pages</li>
 
@@ -386,63 +400,10 @@
 			<div class="row">
 				<div class="col-lg-6">
 
-					<div class="card">
+					<div class="card" id="chartContainer" style="height: 400px;">
 						<div class="card-body">
-							<h5 class="card-title">Available Assets</h5>
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal"
-								data-bs-target="#addModal" data-bs-whatever="@mdo">New Asset</button>
-								<!-- table table-hover: is table style class
-								     datatable: is seprate class to add sorting and limiting records to table
-								 -->
-							<table class=" table table-success  table-striped table-hover datatable">
-								<thead >
-									<tr class="table-light">
-										<th scope="col">#</th>
-										<th scope="col">Member</th>
-										<th scope="col">Type</th>
-										<th scope="col">Allocation Date</th>
-										<th scope="col">Hardware Need</th>
-										<th scope="col">MAC ID</th>
-										<th scope="col">Software Need</th>
-										<th scope="col">Lisence Type</th>
-										<th scope="col">Lisence Details</th>
-										<th scope="col">Expiry Date</th>
-										<th scope="col">Actions</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="asset:${allAssets}">
-										<td th:text="${asset.id}"></td>
-										<td th:text="${asset.member}"></td>
-										<td th:text="${asset.assettype}"></td>
-										<td th:text="${asset.asgdate}"></td>
-										<td th:text=${asset.hardwarepurpose}></td>
-										<td th:text=${asset.macid}></td>
-										<td th:text=${asset.softwarepurpose}></td>
-										<td th:text=${asset.licencetype}></td>
-										<td th:text=${asset.licencedetails}></td>
-										<td th:text=${asset.expirydate}></td>
-										<td>
-											<!-- <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" data-bs-whatever="@mdo">Edit</button> -->
-											<div class="btn-group">
-												<a th:href="@{/asset/findById/(id=${asset.id})}"
-													class="btn btn-outline-primary" data-bs-toggle="modal"
-													data-bs-target="#editModal" id="editButton"><i
-														class="bi bi-chat-left-text"></i></a>
-												<a class="btn btn-success" id="detailsButton"
-													data-bs-target="#detailsModal" data-bs-toggle="modal"
-													th:href="@{/asset/findById/(id=${asset.id})}"><i
-														class="bi bi-book"></i></a>
-												<a th:href="@{/asset/delete/(id=${asset.id})}" class="btn btn-danger"
-													data-bs-toggle="modal" data-bs-target="#deleteModal"
-													id="deleteButton"><i class="bi bi-trash text-light"></i></a>
-
-											</div>
-										</td>
-
-									</tr>
-								</tbody>
-							</table>
+							<h5 class="card-title">Asset Report</h5>
+							
 						</div>
 					</div>
 
@@ -450,51 +411,35 @@
 
 				<div class="col-lg-6">
 
-					<div class="card">
+					<div class="card" id="assetline" style="height: 400px;">
 						<div class="card-body">
-							<h5 class="card-title">Filtered Assets</h5>
-							<form th:action="@{/asset}" class="d-flex">
-								<input class="form-control me-2" type="search" placeholder="Search by fields"
-									aria-label="Search" name="keyword">
-								<input class="btn btn-outline-success" type="submit"></input>
-							</form>
-							<div>
-							<table class="table table-success  table-striped table-hover datatable" id="example">
-								<thead>
-									<tr class="table-light">
-										<th scope="col">#</th>
-										<th scope="col">Member</th>
-										<th scope="col">Type</th>
-										<th scope="col">Allocation Date</th>
-										<th scope="col">Hardware Need</th>
-										<th scope="col">MAC ID</th>
-										<th scope="col">Software Need</th>
-										<th scope="col">Lisence Type</th>
-										<th scope="col">Lisence Details</th>
-										<th scope="col">Expiry Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="fasset:${filteredAssets}">
-										<td th:text="${fasset.id}"></td>
-										<td th:text="${fasset.member}"></td>
-										<td th:text="${fasset.assettype}"></td>
-										<td th:text="${fasset.asgdate}"></td>
-										<td th:text=${fasset.hardwarepurpose}></td>
-										<td th:text=${fasset.macid}></td>
-										<td th:text=${fasset.softwarepurpose}></td>
-										<td th:text=${fasset.licencetype}></td>
-										<td th:text=${fasset.licencedetails}></td>
-										<td th:text=${fasset.expirydate}></td>
-
-									</tr>
-								</tbody>
-							</table>
-							</div>
+							<h5 class="card-title">Asset Report</h5>
+							
 						</div>
 					</div>
 
 				</div>
+			</div>
+			<div class="row">
+			<div class="col-lg-6">
+
+					<div class="card" >
+						<div class="card-body">
+							<h5 class="card-title">Asset Report</h5>
+							
+						</div>
+					</div>
+					
+				</div>
+				<div class="card-body pb-0">
+              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+
+              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+
+              
+
+            </div>
+			
 			</div>
 		</section>
 
@@ -534,12 +479,6 @@
 							<label for="recipient-name" class="col-form-label">Asset Type:</label>
 							<input type="text" class="form-control" placeholder="Description of asset" id="assettype"
 								name="assettype">
-						</div>
-						
-						<div class="mb-3">
-							<label for="recipient-name" class="col-form-label">Allocation Date</label>
-							<input type="text" class="form-control" placeholder="Year" id="asgdate"
-								name="asgdate">
 						</div>
 
 						<div class="mb-3">
@@ -619,12 +558,6 @@
 							<label for="recipient-name" class="col-form-label">Asset:</label>
 							<input type="text" class="form-control" id="assettypeEdit" name="assettype" required>
 						</div>
-						
-						<div class="mb-3">
-							<label for="recipient-name" class="col-form-label">Allocation Date</label>
-							<input type="text" class="form-control"  id="asgdateEdit"
-								name="asgdate" required>
-						</div>
 
 						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Hardware Use:</label>
@@ -702,12 +635,6 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="recipient-name" class="col-form-label">Allocation Date</label>
-							<input type="text" class="form-control"  id="asgdateDetails"
-								name="asgdate" readonly>
-						</div>
-
-						<div class="mb-3">
 							<label for="recipient-name" class="col-form-label">Hardware Use:</label>
 							<input type="text" class="form-control" id="hardwarepurposeDetail" name="hardwarepurpose" readonly>
 						</div>
@@ -768,7 +695,12 @@
 
 	<!-- Template Main JS File -->
 	<script src="assets/js/main.js"></script>
-	<script src="assets/js/asset.js"></script>
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/report.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 </body>
 
