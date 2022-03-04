@@ -21,6 +21,11 @@ public class StateService
 		return stateRepo.findAll();
 	}
 	
+	public List<State> getbyJoin()
+	{
+		return stateRepo.getByforeignKey();
+	}
+	
 	//Update State details
 	
 	public void saveState(State state)

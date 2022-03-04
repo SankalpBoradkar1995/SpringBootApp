@@ -1,10 +1,16 @@
 package com.vms.root.models;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -20,7 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 //Following annotation is to avoid infinite recursion
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class State {
+public class State implements Externalizable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +34,7 @@ public class State {
 	private String name;
 	private String capital;
 	private String code;
+	
 
 	// Need to add relation between state and country
 	// Many states --> One country
@@ -38,6 +45,18 @@ public class State {
 
 	// Need foreign key / common field to join country --> state tables in DB
 	private Integer countryid;
-
+	
 	private String details;
+
+	@Override
+	public void writeExternal(ObjectOutput out) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
 }

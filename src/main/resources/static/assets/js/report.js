@@ -61,9 +61,7 @@ function drawPieChart(series){
 	        }
     },
     series: series,
-    drilldown:{
-	
-}
+  
 });
 }
 
@@ -102,69 +100,128 @@ function drawLineChart(member, asset){
 }
 
 $.ajax({
-	url: 'builtingraph',
+	url: 'pirgraphdata',
 	success: function(pieResult){
 		
-		//var member = JSON.parse(result).member;
-		//var asset = JSON.parse(result).assettype;
-		//drawLineChart(member, asset);
-		//console.log(result);
 		var series = [];
 		var data = [];
 		
-		
-		for(var i = 0; i < pieResult.length; i++){
-			//console.log(i);
+		var obj = pieResult;
+		const values = Object.keys(obj);
+		for (const n of values){
 			var object = {};
-			object.name = pieResult[i].assettype.toUpperCase();
-			//console.log(object.name);
-			object.y = pieResult[i].member;
-			
-			console.log(object.y);
+			object.name = n;
+			object.y = obj[n];
 			data.push(object);
-		//	console.log(data);
+			console.log(data);
 		}
+		
 		var seriesObject = {
-			name: 'Member',
-			type: 'pie',
-			radius: ['40%', '70%'],
-			avoidLabelOverlap: false,
-			label: {
-                        show: false,
-                        position: 'center'
-                      },
-                      emphasis: {
-                        label: {
-                          show: true,
-                          fontSize: '18',
-                          fontWeight: 'bold'
-                        }
-                      },
-                      labelLine: {
-                        show: false
-                      },
+			name: 'Sprint',
 			colorByPoint: true,
 			data: data
 		};
 		series.push(seriesObject);
-		
-		//console.log(series);
-		inbuildGraph(series);
+		storyGraph(series);
 	}
 });
 
 
-function inbuildGraph(series){
-	document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#trafficChart")).setOption({
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '5%',
-                      left: 'center'
-                    },
-                    series: ser
-                  });
-                });
+function storyGraph(series){
+	Highcharts.chart('storycontainer', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: 'Story Status per overall count'
+	    },
+	    tooltip: {
+	    	formatter: function() {
+	    		return '<strong>'+this.key+': </strong>'+ this.y;
+		    }
+	    },
+	    accessibility: {
+        point: {
+            valueSuffix: ':'
+        }
+    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.y}'
+	            }
+	        }
+	    },
+	    series: series
+	});
+}
+
+
+$.ajax({
+	url: 'piechartbypriority',
+	success: function(pieResult){
+		
+		var series = [];
+		var data = [];
+		
+		var obj = pieResult;
+		const values = Object.keys(obj);
+		for (const n of values){
+			var object = {};
+			object.name = n;
+			object.y = obj[n];
+			data.push(object);
+			console.log(data);
+		}
+		
+		var seriesObject = {
+			name: 'Sprint',
+			colorByPoint: true,
+			data: data
+		};
+		series.push(seriesObject);
+		priorityGraph(series);
+	}
+});
+
+
+function priorityGraph(series){
+	Highcharts.chart('prioritycontainer', {
+	    chart: {
+	        plotBackgroundColor: null,
+	        plotBorderWidth: null,
+	        plotShadow: false,
+	        type: 'pie'
+	    },
+	    title: {
+	        text: 'Story Status per priority'
+	    },
+	    tooltip: {
+	    	formatter: function() {
+	    		return '<strong>'+this.key+': </strong>'+ this.y;
+		    }
+	    },
+	    accessibility: {
+        point: {
+            valueSuffix: ':'
+        }
+    },
+	    plotOptions: {
+	        pie: {
+	            allowPointSelect: true,
+	            cursor: 'pointer',
+	            dataLabels: {
+	                enabled: true,
+	                format: '<b>{point.name}</b>: {point.y}'
+	            }
+	        }
+	    },
+	    series: series
+	});
 }

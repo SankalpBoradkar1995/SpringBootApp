@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>State Management Page</title>
+  <title>User Stories</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -26,6 +26,7 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
   <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
@@ -41,7 +42,7 @@
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- <script src="assets/js/state.js"></script>
+ <script src="assets/js/country.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -52,6 +53,39 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 900px) {
+  .column  {
+    width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column  {
+    width: 100%;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -62,7 +96,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">IT[s]</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -299,34 +333,24 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Vehicles</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Tickets</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a th:href="@{/vehicle}">
-              <i class="bi bi-circle"></i><span>Vehicle Data</span>
+            <a th:href="@{/userstory}">
+              <i class="bi bi-circle"></i><span>User Story</span>
             </a>
           </li>
           <li>
-            <a th:href="@{/vehiclemaintenance}">
-              <i class="bi bi-circle"></i><span>Maintenance</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/vehiclemovement}">
-              <i class="bi bi-circle"></i><span>Movements</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/vehiclehire}">
-              <i class="bi bi-circle"></i><span>Hires</span>
+            <a th:href="@{/defect}">
+              <i class="bi bi-circle"></i><span>Defect</span>
             </a>
           </li>
           
         </ul>
       </li><!-- End Vehicle Components Nav -->
 
-      <li class="nav-item">
+     <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Parameters</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -352,7 +376,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Parameters Nav -->
+      </li> --><!-- End Parameters Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -360,62 +384,33 @@
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a th:href="@{/employee}">
-              <i class="bi bi-circle"></i><span>Employees</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/client}">
-              <i class="bi bi-circle"></i><span>Clients</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/supplier}">
-              <i class="bi bi-circle"></i><span>Suppliers</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/contact}">
-              <i class="bi bi-circle"></i><span>Contacts</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/user}">
-              <i class="bi bi-circle"></i><span>Users</span>
-            </a>
-          </li>
+			<a th:href="@{/asset}">
+				<i class="bi bi-circle"></i><span>Assets</span>
+			</a>
+		</li>
+          
         </ul>
       </li><!-- End People Nav -->
       
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-bar-chart"></i><span>HR and Accounts</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-bar-chart"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a th:href="@{/jobtitle}">
-              <i class="bi bi-circle"></i><span>Job Titles</span>
+            <a th:href="@{/assetreport}">
+              <i class="bi bi-circle"></i><span>Asset Report</span>
             </a>
           </li>
           <li>
-            <a th:href="@{/employeetype}">
-              <i class="bi bi-circle"></i><span>Employee Types</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/invoice}">
-              <i class="bi bi-circle"></i><span>Invoices</span>
-            </a>
-          </li>
-          <li>
-            <a th:href="@{/invoicestatus}">
-              <i class="bi bi-circle"></i><span>Invoice Status Values</span>
+            <a href="@{/defectreport}">
+              <i class="bi bi-circle"></i><span>Defect Reports</span>
             </a>
           </li>
         </ul>
-      </li><!-- End HR & Accounts Nav -->
+      </li> <!-- End HR & Accounts Nav -->
 
-      <li class="nav-item">
+     <!-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gem"></i><span>Globals</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -436,7 +431,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Global Nav -->
+      </li> --><!-- End Global Nav -->
 
       <li class="nav-heading">Pages</li>
 
@@ -496,7 +491,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>State Management Page</h1>
+      <h1>User Stories</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -505,37 +500,47 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-    <h1>List of Countries</h1>
-
+    <!--<h1>List of Countries</h1> -->
+    
     <section class="section">
       <div class="row">
         <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title"></h5>
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@mdo">New State</button>
+            <div class="row">
+            <div class="column">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" data-bs-whatever="@mdo">New Story,that matters...</button>
+            </div>
+            </div>
+              <h5 class="card-title">Availabel Records</h5>
+              
+             
                
-              <table class="table table-hover">
+              <table class=" table table-striped table-hover datatable">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Details</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">Sprint</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Asignee</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="statein:${states}">
-                    <td th:text="${statein.id}"></td>
-                    <td th:text="${statein.name}"></td>
-                    <td th:text="${statein.details}"></td>
+                  <tr th:each="model:${allModels}">
+                    <td th:text="${model.id}"></td>
+                    <td th:text="${model.summary}"></td>
+                    <td th:text="${model.sprint}"></td>
+                    <td th:text=${model.status}></td>
+                    <td th:text=${model.asignee}></td>
                     <td>
                    <!-- <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" data-bs-whatever="@mdo">Edit</button> -->
                    <div class="btn-group">
-                   <a th:href="@{/state/findById/(id=${statein.id})}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModal" id="editButton"><i class="bi bi-chat-left-text"></i></a>
-                   <a class="btn btn-success" id="detailsButton" data-bs-target="#detailsModal" data-bs-toggle="modal" th:href="@{/state/findById/(id=${statein.id})}"><i class="bi bi-book"></i></a>
-                   <a th:href="@{/state/delete/(id=${statein.id})}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" id="deleteButton"><i class="bi bi-trash text-light"></i></a>
+                   <a th:href="@{/userstory/findById/(id=${model.id})}" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editModal" id="editButton"><i class="bi bi-chat-left-text"></i></a>
+                   <a class="btn btn-success" id="detailsButton" data-bs-target="#detailsModal" data-bs-toggle="modal" th:href="@{/userstory/findById/(id=${model.id})}"><i class="bi bi-book"></i></a>
+                   <a th:href="@{/userstory/delete/(id=${model.id})}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" id="deleteButton"><i class="bi bi-trash text-light"></i></a>
                    
                    </div> 
                     </td>
@@ -553,27 +558,44 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
+              <h5 class="card-title">Filtered Records</h5>
               
-              <table class="table table-hover">
+            <!--  <form th:action="@{/country/description/{capital}}" method="get" class="d-flex" id="formID">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital"> -->
+            <!-- uncomment this if new soln fails:  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="capital" id="capital"> -->
+       <!-- <a th:href="@{/country/description/(capital=${inputVal})}" class="btn btn-outline-success" type="submit" onclick="getInputValue();" id="searchButton">Search</a>-->
+      <!--uncomment this if new soln fails: <button class="btn btn-outline-success" type="submit"  id="searchButton">Search</button> -->
+       <!-- onclick="getInputValue();" -->
+       
+     <!-- </form> -->
+     
+     <form th:action="@{/userstory}" class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search by fields" aria-label="Search" name="keyword">
+        <input class="btn btn-outline-success" type="submit"></input>
+      </form>
+     <div>
+     <table class=" table table-striped table-hover datatable">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Country</th>
+                    <th scope="col">Summary</th>
+                    <th scope="col">Sprint</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Asignee</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr th:each="join:${byjoin}">
-                    <td th:text="${join.id}"></td>
-                    <td th:text="${join.name}"></td>
-                    <td th:text="${join.details}"></td>
-                    <td th:text="${join.country.description	}"></td>
-                    
+                  <tr th:each="cap:${filteredList}">
+                    <td th:text="${cap.id}"></td>
+                    <td th:text="${cap.summary}"></td>
+                    <td th:text="${cap.sprint}"></td>
+                    <td th:text=${cap.status}></td>
+                    <td th:text=${cap.asignee}></td>
                   </tr>
                 </tbody>
-              </table>
+              </table> 
+     </div>
+    
             </div>
           </div>
           
@@ -585,113 +607,190 @@
   
   <!-- Bootstrap 5.1 Models -->
   
-  <!-- Add State form -->
- <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Country</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form th:action="@{/state/addNew}" method="post">
-        
-         <div class="mb-3">
-            <label for="idAdd" class="col-form-label">Id:</label>
-            <input type="text" class="form-control" id="idAdd" name="id" disabled>
-          </div>
-          <div class="mb-3">
-          <select class="form-select" aria-label="Default select example" name="countryid" for="ddlCountryAdd" id="ddlCountryAdd">
-  			<option selected>-SELECT-</option>
-  			<option th:each="country : ${countries}"
-				        th:value="${country.id}"
-				        th:text="${country.description}"></option>
-			</select>
-          </div>
-          
-          <div class="mb-3">
-            <label for="nameAdd" class="col-form-label">Description:</label>
-            <input type="text" class="form-control" id="nameAdd" name="name" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="capitalAdd" class="col-form-label">Capital:</label>
-            <input type="text" class="form-control" id="capitalAdd" name="capital" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="codeAdd" class="col-form-label">Code:</label>
-            <input type="text" class="form-control" id="codeAdd" name="code" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="detailsAdd" class="col-form-label">Details:</label>
-            <input type="text" class="form-control" id="detailsAdd" name="details">
-          </div>
-          
-          
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End New State form -->
+  <!-- Add Country form -->
+ <div class="modal" id="addModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Add Story</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form th:action="@{/userstory/addNew}" method="post">
+						<div class="form-floating mb-3">
+  							<textarea class="form-control" placeholder="Add summary here" id="summary" name="summary" required></textarea>
+  							<label for="floatingTextarea">Summary</label>
+						</div>
 
-<!-- Update State form -->
+							<div class="form-floating mb-3">
+            					<textarea class="form-control" id="description" name="description" type="text" placeholder="Description" style="height: 10rem;" required></textarea>
+            					<label for="description">Description</label>
+        					</div>
+							
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="reporter" name="reporter" type="text" placeholder="Reporter" required />
+            				<label for="reporter">Reporter</label>
+        				</div>
+						
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="asignee" name="asignee" type="text" placeholder="Asignee" data-sb-validations="required" />
+            				<label for="asignee">Asignee</label>
+            				<div class="invalid-feedback" data-sb-feedback="asignee:required">Asignee is required.</div>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="priority" name="priority" aria-label="Priority" required>
+                				<option value="P1">P1</option>
+                				<option value="P2">P2</option>
+                				<option value="P3">P3</option>
+            				</select>
+            				<label for="priority">Priority</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="status" name="status" aria-label="Status" required>
+                				<option value="New">New</option>
+                				<option value="In Progress">In Progress</option>
+                				<option value="Completed">Completed</option>
+                				<option value="On hold">On hold</option>
+                				<option value="Obsolute">Obsolute</option>
+            				</select>
+            				<label for="status">Status</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="storypoint" name="storypoint" type="text" placeholder="Story Points" required />
+            				<label for="storyPoints">Story Points</label>
+        				</div>
+
+							<div class="form-floating mb-3">
+            					<select class="form-select" id="sprint" name="sprint" aria-label="Sprint" required>
+                					<option value="1">1</option>
+                					<option value="2">2</option>
+                					<option value="3">3</option>
+                					<option value="4">4</option>
+                					<option value="5">5</option>
+            					</select>
+            					<label for="sprint">Sprint</label>
+        					</div>
+							
+							
+						<div class="form-floating mb-3">
+            				<textarea class="form-control" id="acceptancecriteria" name="acceptancecriteria" type="text" placeholder="Acceptance Criteria" style="height: 10rem;" required></textarea>
+            				<label for="acceptanceCriteria">Acceptance Criteria</label>
+            				<div class="invalid-feedback" data-sb-feedback="acceptanceCriteria:required">Acceptance Criteria is required.</div>
+        				</div>
+        				
+        				<div class="form-floating mb-3">
+            				<input class="form-control" id="comment" name="comment" type="text" placeholder="Comment" required />
+            				<label for="comment">Comment</label>
+            				<div class="invalid-feedback" data-sb-feedback="comment:required">Comment is required.</div>
+        				</div>
+
+						<div class="mb-3">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- End New Country form -->
+
+<!-- Update User Story form -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit State Record</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update Story</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form th:action="@{/state/update}" method="put">
-        
-        <div class="mb-3">
-            <label for="idEdit" class="col-form-label">ID:</label>
-            <input type="text" class="form-control" id="idEdit" name="id" readonly>
-          </div>
-          
-          <div class="mb-3">
-          <select class="form-select" aria-label="Default select example" name="countryid" for="ddlCountryDetails" id="ddlCountryEdit">
-  			<option selected>-SELECT-</option>
-  			<option th:each="country : ${countries}"
-				        th:value="${country.id}"
-				        th:text="${country.description}"></option>
-			</select>
-          </div>
-          
-          <div class="mb-3">
-            <label for="nameEdit" class="col-form-label">Description:</label>
-            <input type="text" class="form-control" id="nameEdit" name="name" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="capitalEdit" class="col-form-label">Capital:</label>
-            <input type="text" class="form-control" id="capitalEdit" name="capital" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="codeEdit" class="col-form-label">Code:</label>
-            <input type="text" class="form-control" id="codeEdit" name="code" required>
-          </div>
-          
-          <div class="mb-3">
-            <label for="detailsEdit" class="col-form-label">Details:</label>
-            <input type="text" class="form-control" id="detailsEdit" name="details">
-          </div>
-          
-          <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+        <form th:action="@{/userstory/update}" method="put">
+						
+						<div class="form-floating mb-3">
+  							<textarea class="form-control"  id="idEdit" name="id" required></textarea>
+  							<label for="floatingTextarea">ID</label>
+						</div>
+						
+						
+						<div class="form-floating mb-3">
+  							<textarea class="form-control" id="summaryEdit" name="summary" required></textarea>
+  							<label for="floatingTextarea">Summary</label>
+						</div>
+
+							<div class="form-floating mb-3">
+            					<textarea class="form-control" id="descriptionEdit" name="description" type="text" placeholder="Description" style="height: 10rem;" required></textarea>
+            					<label for="description">Description</label>
+        					</div>
+							
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="reporterEdit" name="reporter" type="text" placeholder="Reporter" required />
+            				<label for="reporter">Reporter</label>
+        				</div>
+						
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="asigneeEdit" name="asignee" type="text" placeholder="Asignee" data-sb-validations="required" />
+            				<label for="asignee">Asignee</label>
+            				<div class="invalid-feedback" data-sb-feedback="asignee:required">Asignee is required.</div>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="priorityEdit" name="priority" aria-label="Priority" required>
+                				<option value="P1">P1</option>
+                				<option value="P2">P2</option>
+                				<option value="P3">P3</option>
+            				</select>
+            				<label for="priority">Priority</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="statusEdit" name="status" aria-label="Status" required>
+                				<option value="New">New</option>
+                				<option value="In Progress">In Progress</option>
+                				<option value="Completed">Completed</option>
+                				<option value="On hold">On hold</option>
+                				<option value="Obsolute">Obsolute</option>
+            				</select>
+            				<label for="status">Status</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="storypointEdit" name="storypoint" type="text" placeholder="Story Points" required />
+            				<label for="storyPoints">Story Points</label>
+        				</div>
+
+							<div class="form-floating mb-3">
+            					<select class="form-select" id="sprintEdit" name="sprint" aria-label="Sprint" required>
+                					<option value="1">1</option>
+                					<option value="2">2</option>
+                					<option value="3">3</option>
+                					<option value="4">4</option>
+                					<option value="5">5</option>
+            					</select>
+            					<label for="sprint">Sprint</label>
+        					</div>
+							
+							
+						<div class="form-floating mb-3">
+            				<textarea class="form-control" id="acceptancecriteriaEdit" name="acceptancecriteria" type="text" placeholder="Acceptance Criteria" style="height: 10rem;" required></textarea>
+            				<label for="acceptanceCriteria">Acceptance Criteria</label>
+            				
+        				</div>
+        				
+        				<div class="form-floating mb-3">
+            				<input class="form-control" id="commentEdit" name="comment" type="text"  required />
+            				<label for="comment">Comment</label>
+            				
+        				</div>
+
+						<div class="mb-3">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -722,74 +821,102 @@
 </div>
 <!-- End Delete Country Model -->
 
-<!-- State Details -->
+<!-- Story Details -->
+<div class="modal" id="detailsModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">View Story</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+					
+					<div class="form-floating mb-3">
+  							<textarea class="form-control" id="idDetail" name="id" readonly></textarea>
+  							<label for="floatingTextarea">Summary</label>
+						</div>
+					
+						<div class="form-floating mb-3">
+  							<textarea class="form-control" id="summaryDetail" name="summary" readonly></textarea>
+  							<label for="floatingTextarea">Summary</label>
+						</div>
 
-<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">State Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-        
-        <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">ID:</label>
-            <input type="text" class="form-control" id="idDetails" name="id" readonly>
-          </div>
-          
-          <div class="mb-3">
-          <select class="form-select" aria-label="Default select example" name="countryid" for="ddlCountryDetails" id="ddlCountryDetails">
-  			<option selected>-SELECT-</option>
-  			<option th:each="country : ${countries}"
-				        th:value="${country.id}"
-				        th:text="${country.description}"></option>
-			</select>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Details:</label>
-            <input type="text" class="form-control" id="detailsDetails" name="details" readonly>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Description:</label>
-            <input type="text" class="form-control" id="nameDetails" name="name" readonly>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Capital:</label>
-            <input type="text" class="form-control" id="capitalDetails" name="capital" readonly>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Code:</label>
-            <input type="text" class="form-control" id="codeDetails" name="code" readonly>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Last Updated By:</label>
-            <input type="text" class="form-control" id="lastModifiedByDetails" name="lastModifiedBy" readonly>
-          </div>
-          
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Last Updated At:</label>
-            <input type="text" class="form-control" id="lastModifiedDateDetails" name="lastModifiedDate" readonly>
-          </div>
-          
-          
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+							<div class="form-floating mb-3">
+            					<textarea class="form-control" id="descriptionDetail" name="description" type="text" style="height: 10rem;" readonly></textarea>
+            					<label for="description">Description</label>
+        					</div>
+							
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="reporterDetail" name="reporter" type="text" placeholder="Reporter" readonly />
+            				<label for="reporter">Reporter</label>
+        				</div>
+						
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="asigneeDetail" name="asignee" type="text" placeholder="Asignee" readonly />
+            				<label for="asignee">Asignee</label>
+            				
+        				</div>
 
-<!-- End Country Details -->
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="priorityDetail" name="priority" aria-label="Priority" readonly>
+                				<option value="P1">P1</option>
+                				<option value="P2">P2</option>
+                				<option value="P3">P3</option>
+            				</select>
+            				<label for="priority">Priority</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<select class="form-select" id="statusDetail" name="status" aria-label="Status" readonly>
+                				<option value="New">New</option>
+                				<option value="In Progress">In Progress</option>
+                				<option value="Completed">Completed</option>
+                				<option value="On hold">On hold</option>
+                				<option value="Obsolute">Obsolute</option>
+            				</select>
+            				<label for="status">Status</label>
+        				</div>
+
+						<div class="form-floating mb-3">
+            				<input class="form-control" id="storypointDetail" name="storypoint" type="text" readonly />
+            				<label for="storyPoints">Story Points</label>
+        				</div>
+
+							<div class="form-floating mb-3">
+            					<select class="form-select" id="sprintDetail" name="sprint" aria-label="Sprint" readonly>
+                					<option value="1">1</option>
+                					<option value="2">2</option>
+                					<option value="3">3</option>
+                					<option value="4">4</option>
+                					<option value="5">5</option>
+            					</select>
+            					<label for="sprint">Sprint</label>
+        					</div>
+							
+							
+						<div class="form-floating mb-3">
+            				<textarea class="form-control" id="acceptancecriteriaDetail" name="acceptancecriteria" type="text"  style="height: 10rem;" readonly></textarea>
+            				<label for="acceptanceCriteria">Acceptance Criteria</label>
+            				
+        				</div>
+        				
+        				<div class="form-floating mb-3">
+            				<input class="form-control" id="commentDetail" name="comment" type="text" placeholder="Comment" readonly />
+            				<label for="comment">Comment</label>
+            				<div class="invalid-feedback" data-sb-feedback="comment:required">Comment is required.</div>
+        				</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- End Story Details -->
 
 <!-- End Models-->
 
@@ -812,6 +939,8 @@
 
 
   <!-- Vendor JS Files -->
+  
+  
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/chart.js/chart.min.js"></script>
@@ -823,7 +952,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-   <script src="assets/js/state.js"></script>
+   <script src="assets/js/userstory.js"></script>
+   
    
    </script>
 </body>

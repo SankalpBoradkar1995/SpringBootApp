@@ -24,19 +24,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Country implements Externalizable
-{
+public class UserStory implements Externalizable{
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String code;
-	private String capital;
+	private String storypoint;
+	private Integer sprint;
+	private String priority;
+	private String status;
+	private String asignee;
+	private String reporter;
+	private String summary;
+	private String acceptancecriteria;
 	private String description;
-	private String nationality;
-	private String continent;
+	private String comment;
 	
-	@OneToMany(mappedBy="country")
-	private List<State> states;
+	@OneToMany(mappedBy="userstory")
+	private List<Defect> defects;
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
