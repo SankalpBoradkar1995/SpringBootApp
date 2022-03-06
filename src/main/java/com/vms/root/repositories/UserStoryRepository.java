@@ -20,5 +20,5 @@ public interface UserStoryRepository extends JpaRepository<UserStory, Integer>{
 	List<UserStory> findByStatus(String status);
 	
 	List<UserStory> findByPriority(String priority);
-
+	
 }

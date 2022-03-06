@@ -17,12 +17,16 @@ public class DefectService {
 	
 	public List<Defect> allDefects()
 	{	
-		return defectRepo.getUserStoryAndDefect();
+		//return defectRepo.getUserStoryAndDefect();
+		
+		return defectRepo.findAll();
 	}
 	
 	public List<Defect> findByKeyword(String keyword)
 	{
-		return defectRepo.getByKeyword(keyword);
+		List<Defect> list = defectRepo.getByKeyword(keyword);
+		System.out.println(list.size());
+		return list;
 	}
 	
 	public Optional<Defect> findById(int id)
@@ -38,5 +42,10 @@ public class DefectService {
 	public void saveDefect(Defect defect) {
 		
 		defectRepo.save(defect);
+	}
+	
+	public List<Defect> findbyforeignkey()
+	{
+		return defectRepo.findAll();
 	}
 }

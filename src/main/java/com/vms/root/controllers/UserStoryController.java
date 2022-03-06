@@ -39,7 +39,8 @@ public class UserStoryController {
 		{
 			filteredList = userServiceRepo.findByKeyword(keyword);
 			model.addAttribute("filteredList", filteredList);
-			model.addAttribute("allModels", userServiceRepo.getAll());
+			completelist = userServiceRepo.getAll();
+			model.addAttribute("allModels", completelist);
 		}
 		
 		return "userstory";

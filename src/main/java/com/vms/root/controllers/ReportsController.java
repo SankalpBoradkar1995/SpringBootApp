@@ -1,14 +1,13 @@
 package com.vms.root.controllers;
 
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.vms.root.models.Assets;
+import com.vms.root.models.Defect;
+import com.vms.root.models.UserStory;
+import com.vms.root.services.DefectService;
 import com.vms.root.services.ReportService;
 import com.vms.root.services.UserStoryService;
 
@@ -28,9 +30,19 @@ public class ReportsController {
 	@Autowired
 	UserStoryService userServiceRepo;
 	
+	@Autowired
+	DefectService defectService;
+	
 	@GetMapping("/assetreport")
-	public String showReports()
+	public String showReports(Model model)
 	{
+		
+		List<Defect> defectList = defectService.findbyforeignkey();
+		model.addAttribute("defectdetails", defectList);
+		
+		List<UserStory> storyList = userServiceRepo.getAll();
+		model.addAttribute("storydetails", storyList);
+		
 		return "report";
 	}
 	
@@ -51,13 +63,13 @@ public class ReportsController {
 		Hashtable<String, Integer> pieList = userServiceRepo.donughtGraphData();
 		
 
-		Set<String> keys = pieList.keySet();
+		/*Set<String> keys = pieList.keySet();
 		System.out.println(keys);
 		Iterator value = keys.iterator();
 		while(value.hasNext())
 		{
 			System.out.println(pieList.get(value.next())); 
-		}
+		}*/
 		return pieList;
 	} 
 	
@@ -109,10 +121,12 @@ public class ReportsController {
 	}
 	
 	@RequestMapping("/builtingraph")
+	@ResponseBody
 	public ResponseEntity<?> buildinGraph()
 	{
 		List<Assets> pieList = reportService.reportData();
 		//System.out.println(pieList);
 		return new ResponseEntity<>(pieList, HttpStatus.OK);
 	}
+	
 }

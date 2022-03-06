@@ -22,7 +22,12 @@ public class UserStoryService
 	}
 
 	public List<UserStory> findByKeyword(String keyword) {
-		return userStoryRepo.findByKeyword(keyword);
+		
+		List<UserStory> list = userStoryRepo.findByKeyword(keyword);
+		
+		System.out.println("Size of searched fields: "+list.size());
+		
+		return list;
 	}
 	
 	public void saveUserStory(UserStory userstory)
@@ -129,5 +134,12 @@ public class UserStoryService
 		}
 		
 		return counts;
+	}
+	
+	public int storyCount()
+	{
+		List<UserStory> storyCount = userStoryRepo.findAll();
+		int count = storyCount.size();
+		return count;
 	}
 }

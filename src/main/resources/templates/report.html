@@ -305,6 +305,17 @@
 							<i class="bi bi-circle"></i><span>Assets</span>
 						</a>
 					</li>
+					
+					<li>
+						<a th:href="@{/defect}">
+							<i class="bi bi-circle"></i><span>Defects</span>
+						</a>
+					</li>
+					<li>
+						<a th:href="@{/userstory}">
+							<i class="bi bi-circle"></i><span>User Stories</span>
+						</a>
+					</li>
 
 				</ul>
 			</li><!-- End Assets Nav -->
@@ -397,29 +408,156 @@
 		</div><!-- End Page Title -->
 
 		<section class="section">
+		
+		<!-- Defect Table -->
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-12">
+              <div class="card recent-sales">
 
-					<div class="card" id="chartContainer" style="height: 400px;">
-						<div class="card-body">
-							<h5 class="card-title">Asset Report</h5>
-							
-						</div>
-					</div>
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
 
-				</div>
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
 
-				<div class="col-lg-6">
+                <div class="card-body">
+                  <h5 class="card-title">Defects <span> </span></h5>
 
-					<div class="card" id="assetline" style="height: 400px;">
-						<div class="card-body">
-							<h5 class="card-title">Asset Report</h5>
-							
-						</div>
-					</div>
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Summary</th>
+                        <th scope="col">Reporter</th>
+                        <th scope="col">Asignee</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="detail:${defectdetails}">
+                    <td th:text="${detail.id}"></td>
+                    <td th:text="${detail.summary}"></td>
+                    <td th:text="${detail.reporter}"></td>
+                    <td th:text="${detail.asignee}"></td>
+                    
+                    <td>
+                   <!-- <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" data-bs-whatever="@mdo">Edit</button> -->
+                   <div  th:switch="${detail.status}">
+                   <span th:case= "'New'">
+                   <span class="badge bg-secondary">New</span>
+                   </span>
+                   <span th:case= "'In Progress'">
+                   <span class="badge bg-info text-dark">In Progress</span>
+                   </span>
+                   <span th:case= "'Completed'">
+                   <span class="badge bg-success">Completed</span>
+                   </span>
+                   <span th:case= "'On hold'">
+                   <span class="badge bg-warning text-dark">On hold</span>
+                   </span>
+                   <span th:case= "'Obsolute'">
+                   <span class="badge bg-danger">Obsolute</span>
+                   </span>
+                   </div>
+                   
+                    </td>
+                    
+                  </tr>
+                      
+                    </tbody>
+                  </table>
 
-				</div>
+                </div>
+
+              </div>
+            </div>
+
 			</div>
+			
+			<!-- End User Defect Table -->
+			
+			<!-- User Story Table -->
+			<div class="row">
+				<div class="col-12">
+              <div class="card recent-sales">
+
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+
+                    <li><a class="dropdown-item" href="#">Today</a></li>
+                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">Defects <span> </span></h5>
+
+                  <table class="table table-borderless datatable">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Summary</th>
+                        <th scope="col">Reporter</th>
+                        <th scope="col">Asignee</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="story:${storydetails}">
+                    <td th:text="${story.id}"></td>
+                    <td th:text="${story.summary}"></td>
+                    <td th:text="${story.reporter}"></td>
+                    <td th:text="${story.asignee}"></td>
+                    
+                    <td>
+                   <!-- <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#editModal" id="editButton" data-bs-whatever="@mdo">Edit</button> -->
+                   <div  th:switch="${story.status}">
+                   <span th:case= "'New'">
+                   <span class="badge bg-secondary">New</span>
+                   </span>
+                   <span th:case= "'In Progress'">
+                   <span class="badge bg-info text-dark">In Progress</span>
+                   </span>
+                   <span th:case= "'Completed'">
+                   <span class="badge bg-success">Completed</span>
+                   </span>
+                   <span th:case= "'On hold'">
+                   <span class="badge bg-warning text-dark">On hold</span>
+                   </span>
+                   <span th:case= "'Obsolute'">
+                   <span class="badge bg-danger">Obsolute</span>
+                   </span>
+                   </div>
+                   
+                    </td>
+                    
+                  </tr>
+                      
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+            </div>
+
+				
+			</div>
+			
+			<!-- End user story table -->
+			
 			<div class="row">
 			<div class="col-lg-6">
 

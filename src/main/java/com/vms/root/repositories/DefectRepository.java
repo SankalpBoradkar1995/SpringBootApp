@@ -1,9 +1,12 @@
 package com.vms.root.repositories;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
 import com.vms.root.models.Defect;
+import com.vms.root.models.UserStory;
 
 public interface DefectRepository extends JpaRepository<Defect, Integer>{
 	
@@ -16,4 +19,7 @@ public interface DefectRepository extends JpaRepository<Defect, Integer>{
 			+ "concat(d.id, d.sprint, d.priority, d.status, d.asignee, d.summary, d.description, d.comment) like %?1%")
 	public List<Defect> getByKeyword(String keyword);
 
+	List<Defect> findByUserstory(UserStory userstory);
+	
+	
 }
