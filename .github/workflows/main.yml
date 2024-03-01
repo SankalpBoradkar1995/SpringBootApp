@@ -3,7 +3,7 @@ name: Maven Build and Store Artifact
 on:
   push:
     branches:
-      - SUB
+      - development
 
 jobs:
   build:
@@ -17,16 +17,12 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'adopt'
       
     - name: Build with Maven
       run: mvn clean package -B
       
-    - name: Copy WAR artifact to staging directory
-      run: mkdir staging && cp target/*.war staging
-      
     - name: Archive artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v2
       with:
         name: my-artifact
-        path: staging
+        path: target/*.jar
