@@ -22,10 +22,11 @@ jobs:
     - name: Build with Maven
       run: mvn clean package -B
       
-    - run: mkdir staging && cp target/*.jar staging
-    - uses: actions/upload-artifact@v4
+    - name: Copy artifact to staging directory
+      run: mkdir staging && cp target/*.jar staging
+      
+    - name: Archive artifact
+      uses: actions/upload-artifact@v4
       with:
-      name: Package
-      path: staging
         name: my-artifact
-        path: target/*.jar
+        path: staging
